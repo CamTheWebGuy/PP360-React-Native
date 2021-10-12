@@ -1236,7 +1236,13 @@ const borate = [
   '12 Cups'
 ];
 
-const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
+const Chemicals = ({
+  setChemicalModal,
+  setReadingsModal,
+  setDetailsModal,
+  setData,
+  data
+}) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.dropdownRow}>
@@ -1245,7 +1251,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
           data={chlorineValues}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            setData({ ...data, chlorineTablets: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -1262,7 +1268,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
           data={liquidChlorine}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            setData({ ...data, liquidChlorine: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -1279,7 +1285,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
           data={liquidAcid}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            setData({ ...data, liquidAcid: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -1304,7 +1310,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={triChlor}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, triChlor: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1321,7 +1327,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={diChlor}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, diChlor: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1338,7 +1344,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={calHypo}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, calHypo: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1357,7 +1363,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={nonChlorine}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, potassiumMono: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1385,7 +1391,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={ammoniaBased}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, ammonia: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1402,7 +1408,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={copperBased}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, copperBased: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1419,7 +1425,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={polyQuatBased}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, polyQuat: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1436,7 +1442,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={copperBlend}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, copperBlend: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1466,7 +1472,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={copperBlend}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, sodaAsh: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1485,7 +1491,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={calciumChloride}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, CalciumChloride: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1504,7 +1510,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={conditioner}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, conditioner: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1523,7 +1529,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={sodiumBicar}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, sodiumBicar: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1540,7 +1546,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={diatomaceous}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, diatomaceous: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1559,7 +1565,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={diatomaceousAlt}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, diatomaceousAlt: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1576,7 +1582,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={sodiumBro}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, sodiumBro: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1593,7 +1599,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={dryAcid}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, dryAcid: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1610,7 +1616,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={clarifier}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, clarifier: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1627,7 +1633,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={phosphate}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, phosphateRemover: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1644,7 +1650,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={salt}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, salt: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1661,7 +1667,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={poolEnzyme}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, enzymes: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1680,7 +1686,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={metalSequester}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, metalSequester: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1697,7 +1703,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={broGran}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, bromineGran: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1714,7 +1720,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={broTab}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, bromineTab: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1731,7 +1737,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={poolFLocc}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, poolFlocc: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -1748,7 +1754,7 @@ const Chemicals = ({ setChemicalModal, setReadingsModal, setDetailsModal }) => {
                 data={borate}
                 defaultButtonText='Select Value'
                 onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                  setData({ ...data, borate: selectedItem });
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;

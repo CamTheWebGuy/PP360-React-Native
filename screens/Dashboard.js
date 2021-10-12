@@ -58,6 +58,53 @@ const Dashboard = ({
   };
 
   const [activeCustomer, setActiveCustomer] = useState(null);
+  const [pictureData, setPictureData] = useState([]);
+
+  const [data, setData] = useState({
+    totalChlorine: '',
+    freeChlorine: '',
+    pHlevel: '',
+    alkalinity: '',
+    conditionerLevel: '',
+    hardness: '',
+    phosphateLevel: '',
+    saltLevel: '',
+    chlorineTablets: '',
+    liquidChlorine: '',
+    liquidAcid: '',
+    triChlor: '',
+    diChlor: '',
+    calHypo: '',
+    potassiumMono: '',
+    ammonia: '',
+    copperBased: '',
+    polyQuat: '',
+    copperBlend: '',
+    sodaAsh: '',
+    CalciumChloride: '',
+    conditioner: '',
+    sodiumBicar: '',
+    diatomaceous: '',
+    diatomaceousAlt: '',
+    sodiumBro: '',
+    dryAcid: '',
+    clarifier: '',
+    phosphateRemover: '',
+    salt: '',
+    enzymes: '',
+    metalSequester: '',
+    bromineGran: '',
+    bromineTab: '',
+    poolFlocc: '',
+    borate: '',
+    privateNote: '',
+    publicNote: '',
+    repairOrder: false,
+    repairType: 'Repair Request (Submit a Order for Future Repair)',
+    repairNotify: false,
+    repairDescription: '',
+    repairOfficeNote: ''
+  });
 
   const renderEquip = item => (
     <View style={styles.equipRow}>
@@ -192,11 +239,101 @@ const Dashboard = ({
     }
   };
 
+  const config2 = {
+    headers: {
+      'x-auth-token': token.token,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const addServiceLog = async () => {
+    const body = JSON.stringify({
+      names: checkedItems,
+      totalChlorine: data.totalChlorine,
+      freeChlorine: data.freeChlorine,
+      pHlevel: data.pHlevel,
+      alkalinity: data.alkalinity,
+      conditionerLevel: data.conditionerLevel,
+      hardness: data.hardness,
+      phosphateLevel: data.phosphateLevel,
+      saltLevel: data.saltLevel,
+      chlorineTablets: data.chlorineTablets,
+      liquidChlorine: data.liquidChlorine,
+      liquidAcid: data.liquidAcid,
+      triChlor: data.triChlor,
+      diChlor: data.diChlor,
+      calHypo: data.calHypo,
+      potassiumMono: data.potassiumMono,
+      ammonia: data.ammonia,
+      copperBased: data.copperBased,
+      polyQuat: data.polyQuat,
+      copperBlend: data.copperBlend,
+      sodaAsh: data.sodaAsh,
+      CalciumChloride: data.CalciumChloride,
+      conditioner: data.conditioner,
+      sodiumBicar: data.sodiumBicar,
+      diatomaceous: data.diatomaceous,
+      diatomaceousAlt: data.diatomaceousAlt,
+      sodiumBro: data.sodiumBro,
+      dryAcid: data.dryAcid,
+      clarifier: data.clarifier,
+      phosphateRemover: data.phosphateRemover,
+      salt: data.salt,
+      enzymes: data.enzymes,
+      metalSequester: data.metalSequester,
+      bromineGran: data.bromineGran,
+      bromineTab: data.bromineTab,
+      poolFlocc: data.poolFlocc,
+      borate: data.borate,
+      privateNote: data.privateNote,
+      publicNote: data.publicNote,
+      repairOrder: data.repairOrder,
+      repairType: data.repairType,
+      repairNotify: data.repairNotify,
+      repairDescription: data.repairDescription,
+      repairOfficeNote: data.repairOfficeNote
+    });
+
+    const log = await axios.post(
+      `https://poolpro360.com/api/customers/route/complete/${activeCustomer._id}`,
+      body,
+      config2
+    );
+
+    let uploadPromises = pictureData.map(image => {
+      let formData = new FormData();
+      formData.append('image', image.uri, image.filename);
+      console.log(formData);
+      return axios.patch(
+        `/api/customers/recentActivity/edit/${log.data._id}`,
+        formData,
+        {
+          headers: {
+            'x-auth-token': token.token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+    });
+
+    await axios.all(uploadPromises);
+
+    await axios.get(
+      `/api/customers/recentActivity/edit/${log.data._id}`,
+
+      {
+        headers: {
+          'x-auth-token': token.token
+        }
+      }
+    );
+  };
+
   useEffect(() => {
     NetInfo.fetch().then(async networkState => {
       if (networkState.isConnected) {
         const routeList = await axios.get(
-          `https://poolpro360.com/api/customers/route/${user._id}/Tuesday`,
+          `https://poolpro360.com/api/customers/route/${user._id}/Thursday`,
           config
         );
         dispatch({
@@ -327,6 +464,8 @@ const Dashboard = ({
         <Readings
           setReadingsModal={setReadingsModal}
           setChemicalModal={setChemicalModal}
+          setData={setData}
+          data={data}
         />
       </Modal>
 
@@ -345,6 +484,8 @@ const Dashboard = ({
           setChemicalModal={setChemicalModal}
           setReadingsModal={setReadingsModal}
           setDetailsModal={setDetailsModal}
+          setData={setData}
+          data={data}
         />
       </Modal>
 
@@ -363,6 +504,9 @@ const Dashboard = ({
           setDetailsModal={setDetailsModal}
           setImagePicker={setImagePicker}
           imagePicker={imagePicker}
+          setPictureData={setPictureData}
+          pictureData={pictureData}
+          addServiceLog={addServiceLog}
         />
       </Modal>
 
@@ -485,6 +629,7 @@ const Dashboard = ({
         keyExtractor={(item, index) => item.customer._id}
         renderItem={renderRouteItem}
         style={{ width: '100%' }}
+        ListFooterComponent={<View style={{ height: 200 }} />}
       />
     </View>
   );
@@ -502,7 +647,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingVertical: 20,
     marginHorizontal: 20,
-    borderRadius: 5
+    borderRadius: 5,
+    flex: 1
   },
   routeItemText: {
     height: 30,

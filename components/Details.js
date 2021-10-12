@@ -1,27 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Button, Input } from 'galio-framework';
 import SelectDropdown from 'react-native-select-dropdown';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { AssetsSelector } from 'expo-images-picker';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Collapse,
   CollapseHeader,
-  CollapseBody
+  CollapseBody,
 } from 'accordion-collapse-react-native';
 
-const Details = ({ setDetailsModal, setImagePicker, imagePicker }) => {
+// import ImagePicker from 'react-native-image-picker';
+import { RNS3 } from 'react-native-aws3';
+
+const Details = ({
+  setDetailsModal,
+  setImagePicker,
+  imagePicker,
+  pictureData,
+  setPictureData,
+  addServiceLog,
+}) => {
   const [imageState, setImageState] = useState(null);
 
-  const onDone = data => {
+  const onDone = (data) => {
     setImageState(data);
-    console.log(data);
+    setPictureData(data);
+    setImagePicker(false);
+    // console.log(data);
   };
 
   const goBack = () => {
     setImagePicker(false);
   };
+
+  // const takePic = () => {
+  //   ImagePicker.showImagePicker({}, (response) => {
+  //     console.log(response);
+  //   });
+  // };
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -33,7 +51,7 @@ const Details = ({ setDetailsModal, setImagePicker, imagePicker }) => {
               source={{ uri: imageState[0].uri }}
             />
           )} */}
-          <AssetsSelector
+          {/* <AssetsSelector
             options={{
               assetsType: ['photo', 'video'],
               maxSelections: 3,
@@ -69,18 +87,13 @@ const Details = ({ setDetailsModal, setImagePicker, imagePicker }) => {
                 doneFunction: data => onDone(data)
               }
             }}
-          />
+          /> */}
         </View>
       ) : (
         <View>
           <View style={styles.dropdownRow}>
             <Text>Log Images (Emailed To Customer)</Text>
-            <Button
-              style={{ backgroundColor: '#3f4257' }}
-              onPress={() => {
-                setImagePicker(true);
-              }}
-            >
+            <Button style={{ backgroundColor: '#3f4257' }} onPress={takePic}>
               Choose Images
             </Button>
           </View>
@@ -89,6 +102,17 @@ const Details = ({ setDetailsModal, setImagePicker, imagePicker }) => {
             <Text>Private Notes (Only Visible to Company)</Text>
             <Input placeholder='regular' />
           </View>
+
+          <View style={styles.dropdownRow}>
+            <Button
+              style={{ backgroundColor: '#3f4257' }}
+              onPress={() => {
+                addServiceLog();
+              }}
+            >
+              Complete Service
+            </Button>
+          </View>
         </View>
       )}
     </ScrollView>
@@ -96,11 +120,11 @@ const Details = ({ setDetailsModal, setImagePicker, imagePicker }) => {
 };
 
 const _textStyle = {
-  color: 'white'
+  color: 'white',
 };
 const _buttonStyle = {
   backgroundColor: 'black',
-  borderRadius: 18
+  borderRadius: 18,
 };
 
 const styles = StyleSheet.create({
@@ -108,25 +132,25 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 15
+    marginVertical: 15,
   },
   dropdownLabel: {
     textAlign: 'center',
     marginBottom: 10,
-    fontFamily: 'roboto-bold'
+    fontFamily: 'roboto-bold',
   },
   customBtn: {
     backgroundColor: '#11cdef',
     minWidth: '50%',
     paddingHorizontal: 50,
     paddingVertical: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
   customBtnText: {
     color: 'white',
     fontFamily: 'roboto-bold',
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default Details;

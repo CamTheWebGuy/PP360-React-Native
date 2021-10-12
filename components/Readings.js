@@ -246,7 +246,8 @@ const Readings = props => {
           data={chlorineValues}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, totalChlorine: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -263,7 +264,8 @@ const Readings = props => {
           data={chlorineValues}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, freeChlorine: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -280,7 +282,8 @@ const Readings = props => {
           data={phLevel}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, pHlevel: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -297,7 +300,8 @@ const Readings = props => {
           data={alkalinityReadings}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, alkalinity: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -314,7 +318,8 @@ const Readings = props => {
           data={conditionerReadings}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, conditionerLevel: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -331,7 +336,8 @@ const Readings = props => {
           data={hardnessReadings}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, hardness: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -348,7 +354,8 @@ const Readings = props => {
           data={phosphateReadings}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, phosphateLevel: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -365,7 +372,8 @@ const Readings = props => {
           data={saltReadings}
           defaultButtonText='Select Value'
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            props.setData({ ...props.data, saltLevel: selectedItem });
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;

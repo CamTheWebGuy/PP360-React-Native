@@ -93,7 +93,7 @@ const Details = ({
         <View>
           <View style={styles.dropdownRow}>
             <Text>Log Images (Emailed To Customer)</Text>
-            <Button style={{ backgroundColor: '#3f4257' }} onPress={takePic}>
+            <Button style={{ backgroundColor: '#3f4257' }}>
               Choose Images
             </Button>
           </View>
